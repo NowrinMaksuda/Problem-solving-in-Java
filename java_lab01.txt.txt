@@ -1,0 +1,392 @@
+##Task 01 — Positive Odd Numbers
+
+
+import java.util.Scanner;
+
+public class Task01 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter 10 numbers:");
+
+        int sum = 0;
+        int count = 0;
+        int min = 0;
+        int max = 0;
+        boolean found = false;
+
+        for (int i = 1; i <= 10; i++) {
+            int num = sc.nextInt();
+
+            if (num > 0 && num % 2 != 0) {
+                sum += num;
+                count++;
+
+                if (!found) {
+                    min = num;
+                    max = num;
+                    found = true;
+                } else {
+                    if (num < min) min = num;
+                    if (num > max) max = num;
+                }
+            }
+        }
+
+        if (!found) {
+            System.out.println("No odd positive numbers found");
+        } else {
+            double average = (double) sum / count;
+            System.out.println("Sum = " + sum);
+            System.out.println("Minimum = " + min);
+            System.out.println("Maximum = " + max);
+            System.out.println("Average = " + average);
+        }
+
+        sc.close();
+    }
+}
+
+##Task 02 — Count Prime Numbers Between Two Numbers
+
+
+import java.util.Scanner;
+
+public class Task02 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the lower number:");
+        int low = sc.nextInt();
+        System.out.println("Enter the upper number:");
+        int high = sc.nextInt();
+
+        if (high < low) {
+            int temp = low;
+            low = high;
+            high = temp;
+        }
+
+        int count = 0;
+
+        for (int num = low; num <= high; num++) {
+            boolean isPrime = true;
+            if (num < 2) isPrime = false;
+            else {
+                for (int i = 2; i <= num / 2; i++) {
+                    if (num % i == 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+            }
+            if (isPrime) count++;
+        }
+
+        System.out.println("There are " + count + " prime numbers between " + low + " and " + high);
+
+        sc.close();
+    }
+}
+
+##Task 03 — Concatenate Strings and Sum Letters
+
+
+import java.util.Scanner;
+
+public class Task03 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the first string:");
+        String s1 = sc.nextLine();
+        System.out.println("Enter the second string:");
+        String s2 = sc.nextLine();
+
+        String concat = s1 + " " + s2;
+
+        int sum = 0;
+        for (char ch : concat.toCharArray()) {
+            if (Character.isLetter(ch)) sum += (int) ch;
+        }
+
+        System.out.println(concat);
+        System.out.println(sum);
+
+        sc.close();
+    }
+}
+
+##Task 04 — Previous Alphabet
+
+
+import java.util.Scanner;
+
+public class Task04 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter a word in small letters:");
+        String str = sc.nextLine();
+
+        String result = "";
+        for (char ch : str.toCharArray()) {
+            if (ch >= 'a' && ch <= 'z') {
+                if (ch == 'a') result += 'z';
+                else result += (char)(ch - 1);
+            } else result += ch;
+        }
+
+        System.out.println(result);
+
+        sc.close();
+    }
+}
+
+##Task 05 — Reverse Array
+
+
+import java.util.Scanner;
+
+public class Task05 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the length of the array:");
+        int N = sc.nextInt();
+        int arr[] = new int[N];
+
+        System.out.println("Enter the array elements:");
+        for (int i = 0; i < N; i++) arr[i] = sc.nextInt();
+
+        System.out.println("Reversed array:");
+        for (int i = N - 1; i >= 0; i--) System.out.print(arr[i] + " ");
+
+        sc.close();
+    }
+}
+
+##Task 06 — Count Frequency of Numbers
+
+
+import java.util.Scanner;
+
+public class Task06 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the array size:");
+        int N = sc.nextInt();
+        int arr[] = new int[N];
+        int freq[] = new int[N];
+
+        System.out.println("Enter the array elements:");
+        for (int i = 0; i < N; i++) {
+            arr[i] = sc.nextInt();
+            freq[i] = -1;
+        }
+
+        for (int i = 0; i < N; i++) {
+            int count = 1;
+            for (int j = i + 1; j < N; j++) {
+                if (arr[i] == arr[j]) {
+                    count++;
+                    freq[j] = 0;
+                }
+            }
+            if (freq[i] != 0) freq[i] = count;
+        }
+
+        for (int i = 0; i < N; i++) {
+            if (freq[i] != 0) System.out.println(arr[i] + " - " + freq[i] + " times");
+        }
+
+        sc.close();
+    }
+}
+
+
+##Task 07 — Remove Consecutive Duplicates from Array
+
+import java.util.Scanner;
+
+public class Task07 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the size of the array:");
+        int N = sc.nextInt();
+        double arr[] = new double[N];
+
+        System.out.println("Enter the array elements:");
+        for (int i = 0; i < N; i++) arr[i] = sc.nextDouble();
+
+        double newArr[] = new double[N];
+        int size = 0;
+        int removed = 0;
+
+        newArr[size++] = arr[0];
+
+        for (int i = 1; i < N; i++) {
+            if (arr[i] != arr[i - 1]) newArr[size++] = arr[i];
+            else removed++;
+        }
+
+        System.out.print("New Array: ");
+        for (int i = 0; i < size; i++) System.out.print(newArr[i] + " ");
+        System.out.println("\nRemoved elements: " + removed);
+
+        sc.close();
+    }
+}
+
+##Task 08 — Check Identity Matrix
+
+
+import java.util.Scanner;
+
+public class Task08 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the matrix size:");
+        int N = sc.nextInt();
+        int matrix[][] = new int[N][N];
+
+        System.out.println("Enter the matrix elements:");
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < N; j++)
+                matrix[i][j] = sc.nextInt();
+
+        boolean isIdentity = true;
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (i == j && matrix[i][j] != 1) isIdentity = false;
+                if (i != j && matrix[i][j] != 0) isIdentity = false;
+            }
+        }
+
+        if (isIdentity) System.out.println("Identity matrix");
+        else System.out.println("Not an identity matrix");
+
+        sc.close();
+    }
+}
+
+##Task 09 — Remove Specific Element from Array
+
+
+import java.util.Scanner;
+
+public class Task09 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the array size:");
+        int N = sc.nextInt();
+        int arr[] = new int[N];
+
+        System.out.println("Enter the array elements:");
+        for (int i = 0; i < N; i++) arr[i] = sc.nextInt();
+
+        System.out.println("Enter the element to remove:");
+        int remove = sc.nextInt();
+
+        int count = 0;
+        for (int num : arr) if (num == remove) count++;
+
+        System.out.print("Input array: ");
+        for (int num : arr) System.out.print(num + " ");
+
+        if (count == 0) {
+            System.out.println("\nElement not found");
+        } else {
+            int newArr[] = new int[N - count];
+            int index = 0;
+            for (int num : arr) {
+                if (num != remove) newArr[index++] = num;
+            }
+            System.out.print("\nNew array: ");
+            for (int num : newArr) System.out.print(num + " ");
+        }
+
+        sc.close();
+    }
+}
+
+##Task 10 — Smallest & Largest with Location
+
+
+import java.util.Scanner;
+
+public class Task10 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the array size:");
+        int N = sc.nextInt();
+        int arr[] = new int[N];
+
+        System.out.println("Enter the array elements:");
+        for (int i = 0; i < N; i++) arr[i] = sc.nextInt();
+
+        int max = arr[0], min = arr[0];
+        int maxIndex = 0, minIndex = 0;
+
+        for (int i = 0; i < N; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+                maxIndex = i;
+            }
+            if (arr[i] < min) {
+                min = arr[i];
+                minIndex = i;
+            }
+        }
+
+        System.out.println("The largest number " + max + " was found at location " + maxIndex);
+        System.out.println("The smallest number " + min + " was found at location " + minIndex);
+
+        sc.close();
+    }
+}
+
+##Task 11 — Median of Array
+
+
+import java.util.Scanner;
+
+public class Task11 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the array size:");
+        int N = sc.nextInt();
+        int arr[] = new int[N];
+
+        System.out.println("Enter the array elements:");
+        for (int i = 0; i < N; i++) arr[i] = sc.nextInt();
+
+        // Bubble sort
+        for (int i = 0; i < N - 1; i++) {
+            for (int j = 0; j < N - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+
+        double median;
+        if (N % 2 == 1) median = arr[N / 2];
+        else median = (arr[N / 2 - 1] + arr[N / 2]) / 2.0;
+
+        System.out.println("The median is " + median);
+
+        sc.close();
+    }
+}
+
+
