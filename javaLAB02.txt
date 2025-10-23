@@ -1,0 +1,158 @@
+ Task 1 – University
+
+class University {
+    public String name;
+    public String country;
+}
+
+ Task 2 – Student
+
+class Student {
+    public String name = "Default";
+    public int id = 0;
+}
+
+
+ Task 3 – CSECourse
+
+class CSECourse {
+    public String courseName;
+    public String courseCode;
+    public int credit;
+
+    CSECourse() {
+        courseName = "Programming Language II";
+        courseCode = "CSE111";
+        credit = 3;
+    }
+}
+
+ Task 4 – ImaginaryNumber
+
+class ImaginaryNumber {
+    public int realPart = 0;
+    public int imaginaryPart = 0;
+
+    void printNumber() {
+        System.out.println(realPart + " + " + imaginaryPart + "i");
+    }
+}
+
+
+ Task 5 – Course
+
+class Course {
+    public String courseName;
+    public String courseCode;
+    public int courseCredit;
+
+    void updateDetails(String name, String code, int credit) {
+        courseName = name;
+        courseCode = code;
+        courseCredit = credit;
+    }
+
+    void displayCourse() {
+        System.out.println("Course Name: " + courseName);
+        System.out.println("Course Code: " + courseCode);
+        System.out.println("Course Credit: " + courseCredit);
+    }
+}
+
+ Task 6 – Assignment
+
+class Assignment {
+    public int tasks = 0;
+    public String difficulty;
+    public boolean submission = false;
+
+    void printDetails() {
+        System.out.println("Number of tasks: " + tasks);
+        System.out.println("Difficulty level: " + difficulty);
+        System.out.println("Submission required: " + submission);
+    }
+
+    String makeOptional() {
+        if (submission) {
+            submission = false;
+            return "Assignment will not require submission";
+        } else {
+            return "Submission is already not required";
+        }
+    }
+}
+
+ Task 7 – CellPhone
+
+class CellPhone {
+    public String model = "unknown";
+    public String[] contacts = new String[3];
+    public int contactCount = 0;
+
+    void printDetails() {
+        System.out.println("Phone Model " + model);
+        System.out.println("Contacts Stored " + contactCount);
+        if (contactCount > 0) {
+            System.out.println("Stored Contacts:");
+            for (int i = 0; i < contactCount; i++) {
+                System.out.println(contacts[i]);
+            }
+        }
+    }
+
+    void storeContact(String contact) {
+        if (contactCount < contacts.length) {
+            contacts[contactCount] = contact;
+            contactCount++;
+            System.out.println("Contact Stored");
+        } else {
+            System.out.println("Memory full. New contact can't be stored.");
+        }
+    }
+}
+
+Task 8 – Employee
+
+class Employee {
+    public String name;
+    public double salary;
+    public String designation;
+
+    void newEmployee(String empName) {
+        name = empName;
+        salary = 30000;
+        designation = "junior";
+    }
+
+    void displayInfo() {
+        System.out.println("Employee Name: " + name);
+        System.out.println("Employee Salary: " + salary + " Tk");
+        System.out.println("Employee Designation: " + designation);
+    }
+
+    void calculateTax() {
+        if (salary > 50000) {
+            double tax = salary * 0.30;
+            System.out.println(name + " Tax Amount: " + tax + " Tk");
+        } else if (salary > 30000) {
+            double tax = salary * 0.10;
+            System.out.println(name + " Tax Amount: " + tax + " Tk");
+        } else {
+            System.out.println("No need to pay tax");
+        }
+    }
+
+    void promoteEmployee(String newDesignation) {
+        int increment = 0;
+        switch (newDesignation.toLowerCase()) {
+            case "senior": increment = 25000; break;
+            case "lead": increment = 50000; break;
+            case "manager": increment = 75000; break;
+        }
+        designation = newDesignation;
+        salary += increment;
+        System.out.println(name + " has been promoted to " + newDesignation);
+        System.out.printf("New Salary: %.2f Tk\n", salary);
+    }
+}
+
